@@ -1,0 +1,2 @@
+# Yazuki
+YAZUKI Game Shop
