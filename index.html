@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YAZUKI | Game Account Marketplace</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#090909;
+  color:#fff;
+  font-family:Arial,sans-serif;
+}
+header{
+  padding:22px;
+  border-bottom:1px solid #b89142;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{
+  color:#d6ad58;
+  font-size:25px;
+  font-weight:bold;
+  letter-spacing:4px;
+}
+.hero{
+  text-align:center;
+  padding:85px 20px;
+}
+.hero h1{
+  font-size:38px;
+  color:#d6ad58;
+}
+.hero p{color:#aaa}
+button{
+  background:#d6ad58;
+  color:#090909;
+  border:0;
+  padding:13px 25px;
+  border-radius:6px;
+  font-weight:bold;
+}
+section{padding:25px}
+.section-title{
+  color:#d6ad58;
+  border-bottom:1px solid #444;
+  padding-bottom:12px;
+}
+.card{
+  background:#171717;
+  border:1px solid #393027;
+  border-radius:12px;
+  padding:20px;
+  margin:15px 0;
+}
+.card h3{color:#d6ad58}
+.price{color:#fff;font-size:20px}
+footer{
+  text-align:center;
+  padding:30px;
+  color:#777;
+  border-top:1px solid #333;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">YAZUKI</div>
+  <span>GAME MARKET</span>
+</header>
+
+<div class="hero">
+  <h1>YAZUKI MARKET</h1>
+  <p>Premium Game Account Marketplace</p>
+  <button onclick="document.getElementById('products').scrollIntoView()">
+    EXPLORE ACCOUNTS
+  </button>
+</div>
+
+<section id="products">
+  <h2 class="section-title">AVAILABLE ACCOUNTS</h2>
+
+  <div class="card">
+    <h3>Coming Soon</h3>
+    <p>New game accounts will appear here.</p>
+    <p class="price">— MMK</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 YAZUKI MARKET
+  <p>Myanmar Game Account Marketplace</p>
+</footer>
+
+</body>
+</html>
