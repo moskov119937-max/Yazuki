@@ -221,8 +221,21 @@ function closeOrderForm(){
         })
       }
     );
-  
 
+    const data = await response.json();
+
+    if(!response.ok){
+      throw new Error(data.message || "Order failed");
+    }
+
+    message.innerText = "Order submitted! Order No: "+data.order_no;
+
+  }catch(error){
+    message.innerText = error.message;
+  }finally{
+    button.disabled = false;
+  }
+  }
 document.getElementById("search").addEventListener("input", renderProducts);
 
 loadProducts();
