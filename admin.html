@@ -134,40 +134,46 @@ const supabaseClient = window.supabase.createClient(
   SUPABASE_PUBLISHABLE_KEY
 );
 
-document.getElementById("loginForm").addEventListener("submit", async function(e){
+document.getElementById("loginForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
   const message = document.getElementById("message");
+  const button = document.querySelector("#loginForm button");
+
   message.innerText = "Logging in...";
+  button.disabled = true;
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+  try {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
-  const { data, error } = await supabaseClient.auth.signInWithPassword({
-    email: email,
-    password: password
-  });
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
 
-  if(error){
-  message.innerText = "Login failed. Please check your details.";
-  return;
-}
+    if (error) {
+      throw error;
+    }
 
-message.innerText = "Admin verified successfully!";
-});
+    message.innerText = "Checking admin permission...";
 
-const { data: isAdmin, error: roleError } =
-  await supabaseClient.rpc("is_admin");
+    const { data: isAdmin, error: roleError } =
+      await supabaseClient.rpc("is_admin");
 
-if(roleError || isAdmin !== true){
-  await supabaseClient.auth.signOut();
-  message.innerText = "Access denied. Admin only.";
-  return;
-}
+    if (roleError || isAdmin !== true) {
+      await supabaseClient.auth.signOut();
+      message.innerText = "Access denied. Admin only.";
+      return;
+    }
 
-message.innerText = "Admin verified successfully!";
+    message.innerText = "Admin verified successfully!";
 
-  message.innerText = "Login successful!";
+  } catch (error) {
+    message.innerText = "Error: " + error.message;
+  } finally {
+    button.disabled = false;
+  }
 });
 </script>
 </body>
