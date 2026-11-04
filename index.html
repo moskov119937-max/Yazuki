@@ -129,3 +129,31 @@ ${p.image_url ? `<img src="${escapeHTML(p.image_url)}" style="width:100%;height:
 
 function escapeHTML(value){
 return String(value).replace(/[&<>"']/g, char => ({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+}[char]));
+}
+
+function showDetail(id){
+const p = products.find(item => item.id === id);
+if(!p) return;
+
+document.getElementById("detailName").innerText = p.title;
+document.getElementById("detailDescription").innerText = p.description || "";
+document.getElementById("detailPrice").innerText = Number(p.price).toLocaleString() + " MMK";
+document.getElementById("detailModal").style.display = "flex";
+}
+
+function closeDetail(){
+document.getElementById("detailModal").style.display = "none";
+}
+
+document.getElementById("search").addEventListener("input", renderProducts);
+
+loadProducts();
+</script>
+</body>
+</html>
