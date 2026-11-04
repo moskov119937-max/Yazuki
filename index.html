@@ -3,66 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAZUKI | Game Account Marketplace</title>
+<title>YAZUKI | MLBB Marketplace</title>
 
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;
-  background:#090909;
-  color:#fff;
-  font-family:Arial,sans-serif;
+ margin:0;
+ background:#080808;
+ color:#fff;
+ font-family:Arial,sans-serif;
 }
 header{
-  padding:22px;
-  border-bottom:1px solid #b89142;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:20px;
+ border-bottom:1px solid #a9843d;
+ position:sticky;
+ top:0;
+ background:#0b0b0bee;
+ z-index:5;
 }
 .logo{
-  color:#d6ad58;
-  font-size:25px;
-  font-weight:bold;
-  letter-spacing:4px;
+ color:#d6ad58;
+ font-size:25px;
+ font-weight:bold;
+ letter-spacing:4px;
+}
+.lang{
+ background:#191919;
+ color:#d6ad58;
+ border:1px solid #80652e;
+ padding:8px 12px;
+ border-radius:7px;
 }
 .hero{
-  text-align:center;
-  padding:85px 20px;
+ text-align:center;
+ padding:65px 15px;
+ background:radial-gradient(circle at center,#332713,#080808 70%);
 }
 .hero h1{
-  font-size:38px;
-  color:#d6ad58;
+ color:#e1bd70;
+ font-size:38px;
+ letter-spacing:5px;
 }
 .hero p{color:#aaa}
-button{
-  background:#d6ad58;
-  color:#090909;
-  border:0;
-  padding:13px 25px;
-  border-radius:6px;
-  font-weight:bold;
+.btn{
+ background:#d6ad58;
+ color:#080808;
+ border:0;
+ padding:13px 20px;
+ border-radius:7px;
+ font-weight:bold;
+ cursor:pointer;
 }
-section{padding:25px}
-.section-title{
-  color:#d6ad58;
-  border-bottom:1px solid #444;
-  padding-bottom:12px;
+section{padding:22px 16px}
+.title{
+ color:#d6ad58;
+ border-bottom:1px solid #393027;
+ padding-bottom:12px;
+}
+.search{
+ width:100%;
+ padding:14px;
+ background:#171717;
+ border:1px solid #514127;
+ border-radius:8px;
+ color:white;
+ margin:12px 0;
+}
+.filters{
+ display:flex;
+ gap:8px;
+ flex-wrap:wrap;
+}
+.filter{
+ padding:9px 15px;
+ border:1px solid #80652e;
+ background:#171717;
+ color:#d6ad58;
+ border-radius:7px;
+}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:15px;
 }
 .card{
-  background:#171717;
-  border:1px solid #393027;
-  border-radius:12px;
-  padding:20px;
-  margin:15px 0;
+ background:linear-gradient(145deg,#1c1a16,#101010);
+ border:1px solid #514127;
+ border-radius:12px;
+ overflow:hidden;
 }
-.card h3{color:#d6ad58}
-.price{color:#fff;font-size:20px}
+.image{
+ height:145px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ background:#201a10;
+ color:#b99a5c;
+ font-size:35px;
+}
+.card-body{padding:15px}
+.card h3{color:#dfb85e}
+.price{
+ color:#fff;
+ font-size:20px;
+ font-weight:bold;
+}
+.card button{width:100%;margin-top:10px}
+.empty{
+ text-align:center;
+ color:#888;
+ padding:35px;
+}
 footer{
-  text-align:center;
-  padding:30px;
-  color:#777;
-  border-top:1px solid #333;
+ text-align:center;
+ padding:30px;
+ color:#777;
+ border-top:1px solid #333;
+ margin-top:35px;
+}
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:#000c;
+ z-index:10;
+ justify-content:center;
+ align-items:center;
+ padding:15px;
+}
+.modal-box{
+ background:#171717;
+ border:1px solid #b89142;
+ border-radius:12px;
+ padding:22px;
+ width:100%;
+ max-width:420px;
+}
+.close{
+ float:right;
+ color:#d6ad58;
+ background:none;
+ border:0;
+ font-size:24px;
 }
 </style>
 </head>
@@ -70,32 +155,11 @@ footer{
 <body>
 
 <header>
-  <div class="logo">YAZUKI</div>
-  <span>GAME MARKET</span>
+ <div class="logo">YAZUKI</div>
+ <button class="lang" onclick="toggleLanguage()">MY / EN</button>
 </header>
 
 <div class="hero">
-  <h1>YAZUKI MARKET</h1>
-  <p>Premium Game Account Marketplace</p>
-  <button onclick="document.getElementById('products').scrollIntoView()">
-    EXPLORE ACCOUNTS
-  </button>
-</div>
-
-<section id="products">
-  <h2 class="section-title">AVAILABLE ACCOUNTS</h2>
-
-  <div class="card">
-    <h3>Coming Soon</h3>
-    <p>New game accounts will appear here.</p>
-    <p class="price">— MMK</p>
-  </div>
-</section>
-
-<footer>
-  © 2026 YAZUKI MARKET
-  <p>Myanmar Game Account Marketplace</p>
-</footer>
-
-</body>
-</html>
+ <h1>YAZUKI MARKET</h1>
+ <p id="subtitle">Premium Mobile Legends Account Marketplace</p>
+ <button
