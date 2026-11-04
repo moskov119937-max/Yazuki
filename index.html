@@ -93,7 +93,7 @@ status.innerText = products.length ? "Available Accounts: "+products.length : "N
 renderProducts();
 
 }catch(error){
-status.innerText = "Database connection failed. Please check settings.";
+status.innerText = "Database Error: " + error.message;
 console.error(error);
 }
 }
