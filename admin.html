@@ -149,9 +149,22 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
   });
 
   if(error){
-    message.innerText = "Login failed. Please check your details.";
-    return;
-  }
+  message.innerText = "Login failed. Please check your details.";
+  return;
+}
+
+message.innerText = "Checking admin permission...";
+
+const { data: isAdmin, error: roleError } =
+  await supabaseClient.rpc("is_admin");
+
+if(roleError || isAdmin !== true){
+  await supabaseClient.auth.signOut();
+  message.innerText = "Access denied. Admin only.";
+  return;
+}
+
+message.innerText = "Admin verified successfully!";
 
   message.innerText = "Login successful!";
 });
