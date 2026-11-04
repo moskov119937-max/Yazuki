@@ -153,7 +153,8 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
   return;
 }
 
-message.innerText = "Login successful!";
+message.innerText = "Admin verified successfully!";
+});
 
 const { data: isAdmin, error: roleError } =
   await supabaseClient.rpc("is_admin");
