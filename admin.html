@@ -153,7 +153,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
   return;
 }
 
-message.innerText = "Checking admin permission...";
+message.innerText = "Login successful!";
 
 const { data: isAdmin, error: roleError } =
   await supabaseClient.rpc("is_admin");
