@@ -183,7 +183,7 @@ document.getElementById("detailModal").style.display = "none";
 function closeOrderForm(){
   document.getElementById("orderModal").style.display = "none";
 }
-  async function submitOrder(){
+ async function submitOrder(){
   if(!selectedProduct) return;
 
   const message = document.getElementById("orderMessage");
@@ -203,30 +203,25 @@ function closeOrderForm(){
   message.innerText = "Submitting...";
 
   try{
-    const response = await fetch(
-      SUPABASE_URL + "/rest/v1/rpc/create_yazuki_order",
-      {
-        method:"POST",
-        headers:{
-          "apikey":SUPABASE_PUBLISHABLE_KEY,
-          "Authorization":"Bearer "+SUPABASE_PUBLISHABLE_KEY,
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          p_customer_name:customerName,
-          p_phone:phone,
-          p_product_id:selectedProduct.id,
-          p_transaction_no:transactionNo,
-          p_note:note || null
-        })
-      }
-    );
+    const response = await fetch(SUPABASE_URL + "/rest/v1/rpc/create_yazuki_order", {
+      method:"POST",
+      headers:{
+        "apikey":SUPABASE_PUBLISHABLE_KEY,
+        "Authorization":"Bearer "+SUPABASE_PUBLISHABLE_KEY,
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        p_customer_name:customerName,
+        p_phone:phone,
+        p_product_id:selectedProduct.id,
+        p_transaction_no:transactionNo,
+        p_note:note || null
+      })
+    });
 
     const data = await response.json();
 
-    if(!response.ok){
-      throw new Error(data.message || "Order failed");
-    }
+    if(!response.ok) throw new Error(data.message || "Order failed");
 
     message.innerText = "Order submitted! Order No: "+data.order_no;
 
@@ -235,7 +230,7 @@ function closeOrderForm(){
   }finally{
     button.disabled = false;
   }
-  }
+ }
 document.getElementById("search").addEventListener("input", renderProducts);
 
 loadProducts();
