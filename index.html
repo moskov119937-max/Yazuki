@@ -4,162 +4,128 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YAZUKI | MLBB Marketplace</title>
-
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;
- background:#080808;
- color:#fff;
- font-family:Arial,sans-serif;
-}
-header{
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:20px;
- border-bottom:1px solid #a9843d;
- position:sticky;
- top:0;
- background:#0b0b0bee;
- z-index:5;
-}
-.logo{
- color:#d6ad58;
- font-size:25px;
- font-weight:bold;
- letter-spacing:4px;
-}
-.lang{
- background:#191919;
- color:#d6ad58;
- border:1px solid #80652e;
- padding:8px 12px;
- border-radius:7px;
-}
-.hero{
- text-align:center;
- padding:65px 15px;
- background:radial-gradient(circle at center,#332713,#080808 70%);
-}
-.hero h1{
- color:#e1bd70;
- font-size:38px;
- letter-spacing:5px;
-}
+body{margin:0;background:#080808;color:#fff;font-family:Arial,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid #a9843d;background:#0b0b0b}
+.logo{color:#d6ad58;font-size:25px;font-weight:bold;letter-spacing:4px}
+.hero{text-align:center;padding:65px 15px;background:radial-gradient(circle,#332713,#080808 70%)}
+.hero h1{color:#e1bd70;font-size:38px;letter-spacing:5px}
 .hero p{color:#aaa}
-.btn{
- background:#d6ad58;
- color:#080808;
- border:0;
- padding:13px 20px;
- border-radius:7px;
- font-weight:bold;
- cursor:pointer;
-}
 section{padding:22px 16px}
-.title{
- color:#d6ad58;
- border-bottom:1px solid #393027;
- padding-bottom:12px;
-}
-.search{
- width:100%;
- padding:14px;
- background:#171717;
- border:1px solid #514127;
- border-radius:8px;
- color:white;
- margin:12px 0;
-}
-.filters{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
-}
-.filter{
- padding:9px 15px;
- border:1px solid #80652e;
- background:#171717;
- color:#d6ad58;
- border-radius:7px;
-}
-.grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
- gap:15px;
-}
-.card{
- background:linear-gradient(145deg,#1c1a16,#101010);
- border:1px solid #514127;
- border-radius:12px;
- overflow:hidden;
-}
-.image{
- height:145px;
- display:flex;
- justify-content:center;
- align-items:center;
- background:#201a10;
- color:#b99a5c;
- font-size:35px;
-}
+.title{color:#d6ad58;border-bottom:1px solid #393027;padding-bottom:12px}
+.search{width:100%;padding:14px;background:#171717;border:1px solid #514127;border-radius:8px;color:white;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:#1c1a16;border:1px solid #514127;border-radius:12px;overflow:hidden}
+.image{height:145px;display:flex;justify-content:center;align-items:center;background:#201a10;color:#b99a5c;font-size:35px}
 .card-body{padding:15px}
 .card h3{color:#dfb85e}
-.price{
- color:#fff;
- font-size:20px;
- font-weight:bold;
-}
-.card button{width:100%;margin-top:10px}
-.empty{
- text-align:center;
- color:#888;
- padding:35px;
-}
-footer{
- text-align:center;
- padding:30px;
- color:#777;
- border-top:1px solid #333;
- margin-top:35px;
-}
-.modal{
- display:none;
- position:fixed;
- inset:0;
- background:#000c;
- z-index:10;
- justify-content:center;
- align-items:center;
- padding:15px;
-}
-.modal-box{
- background:#171717;
- border:1px solid #b89142;
- border-radius:12px;
- padding:22px;
- width:100%;
- max-width:420px;
-}
-.close{
- float:right;
- color:#d6ad58;
- background:none;
- border:0;
- font-size:24px;
-}
+.price{font-size:20px;font-weight:bold}
+.btn{background:#d6ad58;color:#080808;border:0;padding:12px 18px;border-radius:7px;font-weight:bold;cursor:pointer}
+.empty{text-align:center;color:#888;padding:35px}
+.status{text-align:center;color:#aaa;padding:12px}
+footer{text-align:center;padding:30px;color:#777;border-top:1px solid #333;margin-top:35px}
+.modal{display:none;position:fixed;inset:0;background:#000c;z-index:10;justify-content:center;align-items:center;padding:15px}
+.modal-box{background:#171717;border:1px solid #b89142;border-radius:12px;padding:22px;width:100%;max-width:420px}
+.close{float:right;color:#d6ad58;background:none;border:0;font-size:24px}
 </style>
 </head>
-
 <body>
 
 <header>
- <div class="logo">YAZUKI</div>
- <button class="lang" onclick="toggleLanguage()">MY / EN</button>
+<div class="logo">YAZUKI</div>
+<span style="color:#d6ad58">MLBB MARKET</span>
 </header>
 
 <div class="hero">
- <h1>YAZUKI MARKET</h1>
- <p id="subtitle">Premium Mobile Legends Account Marketplace</p>
- <button
+<h1>YAZUKI MARKET</h1>
+<p>Premium Mobile Legends Account Marketplace</p>
+<button class="btn" onclick="document.getElementById('products').scrollIntoView()">EXPLORE ACCOUNTS</button>
+</div>
+
+<section id="products">
+<h2 class="title">MLBB ACCOUNTS</h2>
+<input class="search" id="search" placeholder="Search accounts..." oninput="renderProducts()">
+<div id="status" class="status">Connecting to YAZUKI Database...</div>
+<div class="grid" id="productGrid"></div>
+</section>
+
+<div class="modal" id="detailModal">
+<div class="modal-box">
+<button class="close" onclick="closeDetail()">×</button>
+<h2 id="detailName" style="color:#d6ad58"></h2>
+<p id="detailDescription"></p>
+<p class="price" id="detailPrice"></p>
+</div>
+</div>
+
+<footer>
+© 2026 YAZUKI MARKET
+<p>Myanmar MLBB Account Marketplace</p>
+</footer>
+
+<script>
+const SUPABASE_URL = "https://kkqopclkierekzqinodf.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+
+let products = [];
+
+async function loadProducts(){
+const status = document.getElementById("status");
+
+try{
+const response = await fetch(
+SUPABASE_URL + "/rest/v1/products?select=id,product_code,title,price,description,image_url&is_active=eq.true&order=price.asc",
+{
+headers:{
+"apikey":SUPABASE_PUBLISHABLE_KEY,
+"Authorization":"Bearer "+SUPABASE_PUBLISHABLE_KEY
+}
+}
+);
+
+if(!response.ok){
+throw new Error("Database response: "+response.status);
+}
+
+products = await response.json();
+status.innerText = products.length ? "Available Accounts: "+products.length : "No accounts available yet.";
+renderProducts();
+
+}catch(error){
+status.innerText = "Database connection failed. Please check settings.";
+console.error(error);
+}
+}
+
+function renderProducts(){
+const keyword = document.getElementById("search").value.toLowerCase();
+
+const list = products.filter(p =>
+(p.title || "").toLowerCase().includes(keyword)
+);
+
+const grid = document.getElementById("productGrid");
+
+if(list.length===0){
+grid.innerHTML='<div class="empty">No accounts available.</div>';
+return;
+}
+
+grid.innerHTML=list.map(p=>`
+<div class="card">
+<div class="image">
+${p.image_url ? `<img src="${escapeHTML(p.image_url)}" style="width:100%;height:145px;object-fit:cover">` : "MLBB"}
+</div>
+<div class="card-body">
+<h3>${escapeHTML(p.title)}</h3>
+<p style="color:#999">${escapeHTML(p.description || "")}</p>
+<p class="price">${Number(p.price).toLocaleString()} MMK</p>
+<button class="btn" onclick="showDetail('${p.id}')">VIEW DETAILS</button>
+</div>
+</div>
+`).join("");
+}
+
+function escapeHTML(value){
+return String(value).replace(/[&<>"']/g, char => ({
