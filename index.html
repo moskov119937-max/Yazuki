@@ -51,14 +51,35 @@ footer{text-align:center;padding:30px;color:#777;border-top:1px solid #333;margi
 </section>
 
 <div class="modal" id="detailModal">
-<div class="modal-box">
-<button class="close" onclick="closeDetail()">×</button>
-<h2 id="detailName" style="color:#d6ad58"></h2>
-<p id="detailDescription"></p>
-<p class="price" id="detailPrice"></p>
-</div>
+  <div class="modal-box">
+    <button class="close" onclick="closeDetail()">×</button>
+
+    <h2 id="detailName" style="color:#d6ad58"></h2>
+    <p id="detailDescription"></p>
+    <p class="price" id="detailPrice"></p>
+
+    <button class="btn" onclick="openOrderForm()">
+      ORDER NOW
+    </button>
+  </div>
 </div>
 
+<div class="modal" id="orderModal">
+  <div class="modal-box">
+    <button class="close" onclick="closeOrderForm()">×</button>
+
+    <h2 style="color:#d6ad58">PLACE YOUR ORDER</h2>
+
+    <input id="customerName" placeholder="Your Name">
+    <input id="customerPhone" placeholder="Phone Number">
+    <input id="transactionNo" placeholder="Transaction Number">
+    <textarea id="orderNote" placeholder="Note (Optional)"></textarea>
+
+    <button class="btn" onclick="submitOrder()">SUBMIT ORDER</button>
+
+    <p id="orderMessage"></p>
+  </div>
+</div>
 <footer>
 © 2026 YAZUKI MARKET
 <p>Myanmar MLBB Account Marketplace</p>
@@ -69,6 +90,8 @@ const SUPABASE_URL = "https://kkqopclkierekzqinodf.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_pr7G4KKq17PnwjZfYjfL2A_BK-t1s_G";
 
 let products = [];
+let selectedProduct = null;
+
 
 async function loadProducts(){
 const status = document.getElementById("status");
@@ -140,6 +163,7 @@ return String(value).replace(/[&<>"']/g, char => ({
 function showDetail(id){
 const p = products.find(item => item.id === id);
 if(!p) return;
+selectedProduct = p;  
 
 document.getElementById("detailName").innerText = p.title;
 document.getElementById("detailDescription").innerText = p.description || "";
